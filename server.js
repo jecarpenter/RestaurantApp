@@ -13,28 +13,28 @@ app.use(express.json());
 // Array to hold all customer objects
 var currentCustomers = [
   {
-    name: "name",
-    phone: "214-212-7777",
-    email: "blah@gmail.com",
-    id: "blahness"
+    customerName: "customerName",
+    phoneNumber: "214-212-7777",
+    customerEmail: "blah@gmail.com",
+    customerID: "blahness"
   },
   {
-    name: "test2",
-    phone: "test2",
-    email: "test2",
-    id: "test2"
+    customerName: "test2",
+    phoneNumber: "test2",
+    customerEmail: "test2",
+    customerID: "test2"
   },
   {
-    name: "test3",
-    phone: "test3",
-    email: "test3",
-    id: "test3"
+    customerName: "test3",
+    phoneNumber: "test3",
+    customerEmail: "test3",
+    customerID: "test3"
   },
   {
-    name: "test4",
-    phone: "test4",
-    email: "test4",
-    id: "test4"
+    customerName: "test4",
+    phoneNumber: "test4",
+    customerEmail: "test4",
+    customerID: "test4"
   }
 ];
 
@@ -47,11 +47,11 @@ app.get("/", function (req, res) {
 
 // Function to send them the file they searched
 app.get("/:file", function (req, res) {
-  res.sendFile(path.join(__dirname, req.params.file + ".html"));
+  res.sendFile(path.join(__dirname, req.params.file));
 });
 
 // Return full list of currentCustomers
-app.get("/api/currentCustomers", function (req, res) {
+app.get("/api/tables", function (req, res) {
   var tables = {
     currentTables: currentCustomers,
     waitingList: waitingList
@@ -60,9 +60,9 @@ app.get("/api/currentCustomers", function (req, res) {
 });
 
 // Add a new customer to the array and then send back the response
-app.post("/api/currentCustomers", function (req, res) {
+app.post("/api/tables", function (req, res) {
   var newCustomer = req.body;
-  newCustomer.routeName = newCustomer.name.replace(/\s+/g, "").toLowerCase();
+  newCustomer.routeName = newCustomer.customerName.replace(/\s+/g, "").toLowerCase();
   console.log(newCustomer);
 
   if (currentCustomers.length < 5) {
