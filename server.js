@@ -38,14 +38,7 @@ var currentCustomers = [
   }
 ];
 
-var waitingList = [
-  {
-    customerName: "test4",
-    phoneNumber: "test4",
-    customerEmail: "test4",
-    customerID: "test4"
-  }
-];
+var waitingList = [];
 
 // Index
 app.get("/", function (req, res) {
@@ -64,6 +57,11 @@ app.get("/api/tables", function (req, res) {
     waitingList: waitingList
   };
   res.json(tables);
+});
+
+app.post("api/clear", function (req, res) {
+  currentCustomers.empty();
+  waitingList.empty();
 });
 
 // Add a new customer to the array and then send back the response
