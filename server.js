@@ -40,23 +40,18 @@ var currentCustomers = [
 
 var waitingList = [];
 
-// Start the server
-app.listen(PORT, function() {
-  console.log("App listening on PORT " + PORT);
-});
-
 // Index
-app.get("/", function(req, res) {
+app.get("/", function (req, res) {
   res.sendFile(path.join(__dirname, "list.html"));
 });
 
 // Function to send them the file they searched
-app.get("/:file", function(req, res) {
+app.get("/:file", function (req, res) {
   res.sendFile(path.join(__dirname, req.params.file + ".html"));
 });
 
 // Return full list of currentCustomers
-app.get("/api/currentCustomers", function(req, res) {
+app.get("/api/currentCustomers", function (req, res) {
   var tables = {
     currentTables: currentCustomers,
     waitingList: waitingList
@@ -65,7 +60,7 @@ app.get("/api/currentCustomers", function(req, res) {
 });
 
 // Add a new customer to the array and then send back the response
-app.post("/api/currentCustomers", function(req, res) {
+app.post("/api/currentCustomers", function (req, res) {
   var newCustomer = req.body;
   newCustomer.routeName = newCustomer.name.replace(/\s+/g, "").toLowerCase();
   console.log(newCustomer);
@@ -80,6 +75,6 @@ app.post("/api/currentCustomers", function(req, res) {
 });
 
 // Starts the server
-app.listen(PORT, function() {
+app.listen(PORT, function () {
   console.log("App listening on PORT " + PORT);
 });
