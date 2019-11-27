@@ -38,7 +38,14 @@ var currentCustomers = [
   }
 ];
 
-var waitingList = [];
+var waitingList = [
+  {
+    customerName: "test4",
+    phoneNumber: "test4",
+    customerEmail: "test4",
+    customerID: "test4"
+  }
+];
 
 // Index
 app.get("/", function (req, res) {
